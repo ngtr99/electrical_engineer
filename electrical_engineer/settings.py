@@ -29,11 +29,15 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "electrical-engineer-m315.onrender.com",
-]
+_raw_allowed = os.getenv("ALLOWED_HOSTS", "").strip()
+if _raw_allowed:
+    ALLOWED_HOSTS = [h.strip() for h in _raw_allowed.split(",") if h.strip()]
+else:
+    ALLOWED_HOSTS = [
+        "127.0.0.1",
+        "localhost",
+        "electrical-engineer-m315.onrender.com",
+    ]
 
 
 # Application definition
