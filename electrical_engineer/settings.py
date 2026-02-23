@@ -82,15 +82,13 @@ WSGI_APPLICATION = 'electrical_engineer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-MONGO_URI = os.getenv("MONGO_URI")
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': 'electrical_engineer',
-        'HOST': MONGO_URI,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
