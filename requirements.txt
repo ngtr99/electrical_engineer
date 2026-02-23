@@ -7,3 +7,4 @@ pillow==12.1.1
 pymongo==4.16.0
 python-dotenv==1.2.1
 sqlparse==0.5.5
+whitenoise==6.11.0
