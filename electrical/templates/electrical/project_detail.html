@@ -30,10 +30,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label"><strong>Skills</strong></label>
-        <div id="skills-container">
-            {% for skill in project.skills.all %}
-                <span class="badge bg-secondary me-2 mb-2">{{ skill }}</span>
-            {% endfor %}
+        <p>{{ project.skills }}</p>
         </div>
     </div>
     <div class="mb-3">
