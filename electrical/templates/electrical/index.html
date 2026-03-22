@@ -26,7 +26,7 @@
                     <h3>{{ project.name }}</h3>
                     <div style="display: flex; gap: 15px;">
                         {% if project.picture %}
-                            <img src="{{ project.picture.url }}" alt="{{ project.name }}" class="project-image">
+                            <img src="{{ project.picture_url }}" alt="{{ project.name }}" class="project-image">
                         {% endif %}
                         {% if project.skills %}
                             <div class="project-skills">

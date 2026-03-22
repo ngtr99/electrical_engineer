@@ -30,7 +30,7 @@
                 <input type="file" class="form-control" id="picture" name="picture" accept="image/*">
                 {% if project and project.picture %}
                     <div class="mt-3">
-                        <img src="{{ project.picture.url }}" alt="{{ project.name }}" class="img-fluid rounded" style="max-width: 200px; height: auto;">
+                        <img src="{{ project.picture_url }}" alt="{{ project.name }}" class="img-fluid rounded" style="max-width: 200px; height: auto;">
                     </div>
                 {% endif %}
         </div>

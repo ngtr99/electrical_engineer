@@ -5,7 +5,7 @@ class ElectricalData(models.Model):
     name = models.CharField(max_length=100)
     date = models.DateField()
     description = models.TextField()
-    picture = models.ImageField(upload_to='images/')
+    picture = models.URLField(blank=True, null=True)
     skills = models.TextField(blank = True, null = True)
     def __str__(self):
         return self.name
