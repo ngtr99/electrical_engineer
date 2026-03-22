@@ -29,15 +29,6 @@
                                     {% if project.picture_url %}
                                         <img src="{{ project.picture_url }}" alt="{{ project.name }}" class="project-image">
                                     {% endif %}
-                                    {% if project.skills %}
-                                        <div class="project-skills">
-                                            <p><strong>Skills:</strong> {{ project.skills }}</p>
-                                        </div>
-                                    {% else %}
-                                        <p>{{ project.description|truncatewords:20 }}</p>
-                                    {% endif %}
-                                </div>
-
                                 {% if project.skills %}
                                     <div class="project-skills">
                                         <p><strong>Skills:</strong> {{ project.skills }}</p>
