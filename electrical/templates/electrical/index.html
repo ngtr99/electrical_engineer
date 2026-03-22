@@ -25,9 +25,18 @@
                         <a href="{% url 'project_detail' project.id %}">
                             <h3>{{ project.name }}</h3>
                             <div style="display: flex; gap: 15px;">
-                                {% if project.picture_url %}
-                                    <img src="{{ project.picture_url }}" alt="{{ project.name }}" class="project-image">
-                                {% endif %}
+                                <div style="display: flex; gap: 15px;">
+                                    {% if project.picture_url %}
+                                        <img src="{{ project.picture_url }}" alt="{{ project.name }}" class="project-image">
+                                    {% endif %}
+                                    {% if project.skills %}
+                                        <div class="project-skills">
+                                            <p><strong>Skills:</strong> {{ project.skills }}</p>
+                                        </div>
+                                    {% else %}
+                                        <p>{{ project.description|truncatewords:20 }}</p>
+                                    {% endif %}
+                                </div>
 
                                 {% if project.skills %}
                                     <div class="project-skills">
