@@ -1,95 +1,422 @@
-body {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
-    padding: 20px;
+/* Site-wide: Electrical Engineer portfolio */
+:root {
+    --bg-start: #1a1a1a;
+    --bg-end: #2d2d2d;
+    --text: #e0e0e0;
+    --text-muted: #b4d8e6;
+    --accent: #0066cc;
+    --accent-bright: #00a8e8;
+    --card-light: #f7f9fb;
+    --card-text: #374151;
+    --card-heading: #111827;
+    --radius: 12px;
+    --radius-lg: 18px;
+    --shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    --footer-safe: 5.5rem;
 }
 
-h1 {
-    background: linear-gradient(135deg, #0066cc, #00a8e8);
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 16px 16px 24px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+a {
+    color: var(--accent-bright);
+}
+
+/* Home: room for fixed “Add project” control */
+body.page-home {
+    padding-bottom: var(--footer-safe);
+}
+
+/* —— Home —— */
+.hero h1 {
+    background: linear-gradient(135deg, var(--accent), var(--accent-bright));
     color: white;
-    padding: 30px;
-    border-radius: 6px;
+    padding: clamp(1rem, 4vw, 1.75rem);
+    border-radius: 10px;
     box-shadow: 0 8px 32px rgba(0, 102, 204, 0.3);
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    margin: 0 0 24px;
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    line-height: 1.25;
 }
 
-h2 {
-    color: #b4d8e6;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    font-weight: 500;
-}
-
-p {
-    color: #e0e0e0;
-    background: rgba(45, 45, 45, 0.9);
-    padding: 20px;
-    border-radius: 6px;
-    border-left: 4px solid #0066cc;
+.intro p {
+    color: var(--text);
+    background: rgba(45, 45, 45, 0.92);
+    padding: clamp(14px, 3vw, 20px);
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-bright);
     backdrop-filter: blur(10px);
+    line-height: 1.7;
+    margin: 0 0 28px;
 }
 
-button, input[type="submit"] {
-    background: linear-gradient(135deg, #0066cc, #00a8e8);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 4px;
-    cursor: pointer;
+.projects h2 {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-size: clamp(1.35rem, 3vw, 2rem);
     font-weight: 600;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-button:hover, input[type="submit"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(0, 102, 204, 0.4);
-}
-
-button:active, input[type="submit"]:active {
-    transform: translateY(0);
-    box-shadow: 0 8px 16px rgba(0, 102, 204, 0.3);
-}
-footer {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    color: #e0e0e0;
-    font-size: 14px;
-}
-
-.project-image {
-    max-width: 30%;
-    height: 30%;
-    border-radius: 6px;
-    margin-top: 20px;
-    box-shadow: 0 8px 16px rgba(0, 102, 204, 0.3);
 }
 
 .projects-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 3vw, 24px);
 }
 
 .project-card {
+    background: var(--card-light);
     border: 1px solid #cfd8dc;
-    border-radius: 8px;
-    padding: 12px;
-    background: #fff;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    border-radius: var(--radius-lg);
+    padding: clamp(16px, 3vw, 24px);
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.project-card a {
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.project-link {
     text-decoration: none;
     color: inherit;
     display: block;
 }
 
+.project-card h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: var(--card-heading);
+    font-size: clamp(1.25rem, 3vw, 1.85rem);
+    font-weight: 700;
+}
+
+.project-content {
+    display: flex;
+    gap: clamp(16px, 3vw, 24px);
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
 .project-image {
-    margin-top: 8px;
+    width: min(320px, 100%);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 16px rgba(0, 102, 204, 0.18);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.project-info {
+    flex: 1;
+    min-width: min(100%, 240px);
+}
+
+.project-skills {
+    background: #3f3f46;
+    color: #f3f4f6;
+    padding: clamp(14px, 2.5vw, 22px);
+    border-left: 5px solid #0ea5e9;
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    line-height: 1.5;
+}
+
+.project-skills p {
+    margin: 0;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: inherit;
+}
+
+.project-description {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: var(--card-text);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.empty-message {
+    background: rgba(45, 45, 45, 0.92);
+    padding: 18px;
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-bright);
+    color: var(--text);
+}
+
+/* —— Inner pages —— */
+.site-main {
+    max-width: 52rem;
+    margin: 0 auto;
     width: 100%;
-    height: auto;
-    border-radius: 6px;
+}
+
+.page-header {
+    margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+.page-header h1,
+.page-header h2 {
+    margin: 0;
+    font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.field label,
+.form-label {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.field p,
+.field .value {
+    margin: 0;
+    color: var(--text);
+    word-break: break-word;
+}
+
+.detail-image {
+    display: block;
+    max-width: min(100%, 480px);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.field .detail-image {
+    margin-top: 12px;
+}
+
+.form-page .field input[type="text"],
+.form-page .field input[type="date"],
+.form-page .field input[type="file"],
+.form-page .field textarea,
+.form-control {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(30, 30, 35, 0.85);
+    color: var(--text);
+    font: inherit;
+}
+
+.form-page .field textarea {
+    min-height: 8rem;
+    resize: vertical;
+}
+
+.form-page .field input:focus,
+.form-page .field textarea:focus,
+.form-control:focus {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 1px;
+}
+
+.form-actions,
+.actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button.btn {
+    line-height: 1.2;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0, 102, 204, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 102, 204, 0.45);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #b91c1c, #dc2626);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+}
+
+.btn-secondary,
+.btn-info {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover,
+.btn-info:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-1px);
+}
+
+/* Delete confirmation */
+.delete-panel {
+    background: rgba(60, 20, 20, 0.35);
+    border: 1px solid rgba(248, 113, 113, 0.4);
+    border-radius: var(--radius-lg);
+    padding: clamp(1rem, 3vw, 1.5rem);
+    margin-bottom: 1.25rem;
+}
+
+.delete-panel h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+    color: #fecaca;
+}
+
+.delete-panel p {
+    margin: 0 0 0.75rem;
+    color: var(--text);
+}
+
+.delete-panel p:last-child {
+    margin-bottom: 0;
+}
+
+.delete-panel .preview-caption {
+    margin-top: 1rem;
+}
+
+.delete-panel .skills-line {
+    margin-top: 1rem;
+}
+
+/* Fixed add button */
+footer.site-footer {
+    position: fixed;
+    right: clamp(12px, 3vw, 24px);
+    bottom: clamp(12px, 3vw, 24px);
+    z-index: 10;
+}
+
+.btn-add {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(0, 102, 204, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 102, 204, 0.45);
+}
+
+.inner-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 12px 12px 20px;
+    }
+
+    body.page-home {
+        padding-bottom: var(--footer-safe);
+    }
+
+    .project-content {
+        flex-direction: column;
+    }
+
+    .project-image {
+        width: 100%;
+    }
+
+    .form-actions,
+    .actions-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-actions .btn,
+    .actions-row .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 380px) {
+    .btn-add {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
 }

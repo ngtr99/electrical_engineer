@@ -1,45 +1,40 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Delete</title>
+    <title>Delete project</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'electrical/css/project_delete.css' %}">
+    <link rel="stylesheet" href="{% static 'electrical/css/style.css' %}">
 </head>
+<body>
+    <main class="site-main">
+        <header class="page-header">
+            <h1>Delete project</h1>
+        </header>
 
-{% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="alert alert-danger" role="alert">
-                <h4 class="alert-heading">Delete Project</h4>
-                <p>Are you sure you want to delete this project?</p>
-                <hr>
-                <p class="mb-0"><strong>{{ project.name }}</strong></p>
-            <p class="mb-0"><strong>Description:</strong> {{ project.description }}</p>
-            {% if project.image %}
-                <div class="mt-3">
-                    <img src="{{ project.image.url }}" alt="{{ project.name }}" class="img-fluid rounded" style="max-width: 100px; height: 200px;>
-                </div>
+        <div class="delete-panel" role="alert">
+            <h2>Are you sure?</h2>
+            <p>This removes <strong>{{ project.name }}</strong> from your portfolio.</p>
+            {% if project.description %}
+                <p><strong>Description:</strong> {{ project.description|truncatewords:40 }}</p>
             {% endif %}
-            {% if project.skills.all %}
-                <p class="mt-3 mb-0"><strong>Skills:</strong></p>
-                <div class="d-flex flex-wrap gap-2">
-                    {% for skill in project.skills.all %}
-                        <span class="badge bg-info">{{ skill.name }}</span>
-                    {% endfor %}
-                </div>
+            {% if project.picture_url %}
+                <p class="form-label preview-caption">Preview</p>
+                <img src="{{ project.picture_url }}" alt="{{ project.name }}" class="detail-image" loading="lazy">
             {% endif %}
-            </div>
-
-            <form method="post">
-                {% csrf_token %}
-                <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                    <a href="{% url 'project_detail' project.id %}" class="btn btn-secondary">Go back</a>
-                </div>
-            </form>
+            {% if project.skills %}
+                <p class="skills-line"><strong>Skills:</strong> {{ project.skills }}</p>
+            {% endif %}
         </div>
-    </div>
-</div>
-{% endblock %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="actions-row">
+                <button type="submit" class="btn btn-danger">Delete permanently</button>
+                <a href="{% url 'project_detail' project.id %}" class="btn btn-secondary">Go back</a>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
