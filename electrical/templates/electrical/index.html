@@ -11,44 +11,45 @@
     <header>
         <h1>Welcome to Diana's Page - Electrical Engineer</h1>
     </header>
-    
+
     <main>
-        <p>“Hello, my name is Diana, and I am an electrical engineer with a strong interest in power systems, electronics, and control systems. I have experience in designing, analyzing, and troubleshooting electrical systems, and I am passionate about applying engineering principles to solve real-world problems.”</p>
+        <p>Hello, my name is Diana, and I am an electrical engineer with a strong interest in power systems, electronics, and control systems. I have experience in designing, analyzing, and troubleshooting electrical systems, and I am passionate about applying engineering principles to solve real-world problems.</p>
     </main>
 
     <section class="projects">
         <h2>My Projects</h2>
         {% if projects %}
             <div class="projects-list">
-            {% for project in projects %}
-            <div class="project-card">
-                <a href="{% url 'project_detail' project.id %}">
-                    <h3>{{ project.name }}</h3>
-                    <div style="display: flex; gap: 15px;">
-                        {% if project.picture %}
-                            <img src="{{ project.picture_url }}" alt="{{ project.name }}" class="project-image">
-                        {% endif %}
-                        {% if project.skills %}
-                            <div class="project-skills">
-                                <p1><strong>Skills:</strong> {{ project.skills }}</p1>
+                {% for project in projects %}
+                    <div class="project-card">
+                        <a href="{% url 'project_detail' project.id %}">
+                            <h3>{{ project.name }}</h3>
+                            <div style="display: flex; gap: 15px;">
+                                {% if project.picture_url %}
+                                    <img src="{{ project.picture_url }}" alt="{{ project.name }}" class="project-image">
+                                {% endif %}
+
+                                {% if project.skills %}
+                                    <div class="project-skills">
+                                        <p><strong>Skills:</strong> {{ project.skills }}</p>
+                                    </div>
+                                {% else %}
+                                    <p>{{ project.description|truncatewords:20 }}</p>
+                                {% endif %}
                             </div>
-                        {% else %}
-                            <p1>{{ project.description|truncatewords:20 }}</p1>
-                        {% endif %}
+                        </a>
                     </div>
-                </a>
-            </div>
-            {% endfor %}
+                {% endfor %}
             </div>
         {% else %}
             <p>No projects added yet.</p>
         {% endif %}
     </section>
+
     <footer>
         <a href="{% url 'add_data' %}" class="btn-add" style="color: #ade8f1; font-size: 18px; font-weight: bold;">
             + Add Project
         </a>
     </footer>
-
 </body>
 </html>
