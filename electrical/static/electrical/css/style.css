@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* Site-wide: Electrical Engineer portfolio */
 :root {
     --bg-start: #1a1a1a;
@@ -46,12 +48,12 @@ a {
     color: var(--accent-bright);
 }
 
-/* Home: room for fixed “Add project” control */
+/* Home: room for fixed "Add project" control */
 body.page-home {
     padding-bottom: var(--footer-safe);
 }
 
-/* —— Home —— */
+/* Home */
 .hero h1 {
     background: linear-gradient(135deg, var(--accent), var(--accent-bright));
     color: white;
@@ -174,7 +176,7 @@ body.page-home {
     color: var(--text);
 }
 
-/* —— Inner pages —— */
+/* Inner pages */
 .site-main {
     max-width: 52rem;
     margin: 0 auto;
