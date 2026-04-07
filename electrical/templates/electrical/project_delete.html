@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete project</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'electrical/css/style.css' %}">
+</head>
+<body>
+    <main class="site-main">
+        <header class="page-header">
+            <h1>Delete project</h1>
+        </header>
+
+        <div class="delete-panel" role="alert">
+            <h2>Are you sure?</h2>
+            <p>This removes <strong>{{ project.name }}</strong> from your portfolio.</p>
+            {% if project.description %}
+                <p><strong>Description:</strong> {{ project.description|truncatewords:40 }}</p>
+            {% endif %}
+            {% if project.picture_url %}
+                <p class="form-label preview-caption">Preview</p>
+                <img src="{{ project.picture_url }}" alt="{{ project.name }}" class="detail-image" loading="lazy">
+            {% endif %}
+            {% if project.skills %}
+                <p class="skills-line"><strong>Skills:</strong> {{ project.skills }}</p>
+            {% endif %}
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="actions-row">
+                <button type="submit" class="btn btn-danger">Delete permanently</button>
+                <a href="{% url 'project_detail' project.id %}" class="btn btn-secondary">Go back</a>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

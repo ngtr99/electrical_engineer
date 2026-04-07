@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.name }} — Project</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'electrical/css/style.css' %}">
+</head>
+<body>
+    <main class="site-main form-page">
+        <header class="page-header">
+            <h1>{{ project.name }}</h1>
+        </header>
+
+        <div class="stack">
+            <div class="field">
+                <span class="form-label">Date</span>
+                <p class="value">{{ project.date }}</p>
+            </div>
+
+            <div class="field">
+                <span class="form-label">Description</span>
+                <p class="value">{{ project.description|linebreaksbr }}</p>
+            </div>
+
+            {% if project.picture_url %}
+                <div class="field">
+                    <span class="form-label">Picture</span>
+                    <img src="{{ project.picture_url }}" alt="{{ project.name }}" class="detail-image" loading="lazy">
+                </div>
+            {% endif %}
+
+            {% if project.skills %}
+                <div class="field">
+                    <span class="form-label">Skills</span>
+                    <p class="value">{{ project.skills }}</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-actions">
+            <a href="{% url 'project_edit' project.id %}" class="btn btn-primary">Edit project</a>
+            <a href="{% url 'project_delete' project.id %}" class="btn btn-danger">Delete project</a>
+            <a href="{% url 'index' %}" class="btn btn-secondary">Back to home</a>
+        </div>
+    </main>
+</body>
+</html>

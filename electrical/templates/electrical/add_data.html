@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New project</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'electrical/css/style.css' %}">
+</head>
+<body>
+    <main class="site-main form-page">
+        <header class="page-header">
+            <h1>Add project</h1>
+        </header>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="stack">
+                <div class="field">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="date" name="date" required>
+                </div>
+                <div class="field">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                </div>
+                <div class="field">
+                    <label for="picture" class="form-label">Picture</label>
+                    <input type="file" class="form-control" id="picture" name="picture" accept="image/*">
+                </div>
+                <div class="field">
+                    <label for="skills" class="form-label">Skills</label>
+                    <input type="text" class="form-control" id="skills" name="skills" placeholder="Comma-separated skills">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+        <footer class="inner-footer">
+            <a href="{% url 'index' %}" class="btn btn-secondary">Back to home</a>
+        </footer>
+    </main>
+</body>
+</html>
